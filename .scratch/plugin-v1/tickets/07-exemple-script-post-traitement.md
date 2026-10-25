@@ -21,7 +21,7 @@ Ne pas inventer de variables `PEPITO_*` : leur liste, leur sens, le code de sort
 - emplacement : `plugins/pepito/scripts/` (copié par l'utilisateur hors du cache des plugins, que pepito ne doit jamais viser, `script-post-traitement#08`), ou racine du dépôt (`examples/`), ou page publique de pepito seulement ;
 - options de Claude Code, d'après le ticket 01 : `--tools ""` (outils intégrés retirés, tools MCP gardés), `--allowedTools` avec les noms préfixés du ticket 02, `--strict-mcp-config` ou non (il retirerait le serveur déclaré par l'utilisateur), plafond de tours si l'option existe (`--max-turns` absent de `claude --help` 2.1.310) ;
 - journalisation de la sortie JSON (`result`, coût) et code de sortie ;
-- mises en garde en tête du script : agent sans humain devant ses approbations, contenu non fiable (`serveur-mcp-v1.md` § 5.1 (b), § 5.5), coût, envoi du contenu au modèle de Claude Code (ticket 09) ;
+- mises en garde en tête du script, en anglais (`CLAUDE.md` § Langues) : agent sans humain devant ses approbations, contenu non fiable (`serveur-mcp-v1.md` § 5.1 (b), § 5.5), coût, envoi du contenu au modèle de Claude Code (ticket 09) ;
 - test manuel sur le Mac de l'utilisateur.
 
 ## Dépendances hors chantier

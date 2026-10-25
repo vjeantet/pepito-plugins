@@ -1,24 +1,24 @@
 # pepito-plugins
 
-Marketplace Claude Code du plugin **pepito**. [pepito](https://pepito.sodadi.fr) est une app macOS qui enregistre les réunions, les transcrit et produit leurs comptes-rendus sur votre Mac. Le plugin `pepito` apporte à Claude Code des skills qui relient ces réunions à vos autres outils, en passant par le serveur MCP local de pepito. Il ne contient aucun code de l'app.
+Claude Code marketplace for the **pepito** plugin. [pepito](https://pepito.sodadi.fr) is a macOS app that records your meetings, transcribes them and writes their summaries on your Mac. The `pepito` plugin gives Claude Code skills that connect these meetings to your other tools, through pepito's local MCP server. It contains no code from the app.
 
-**État : squelette.** Aucun skill n'est encore publié ; le travail en cours est suivi dans [.scratch/SITUATION.md](.scratch/SITUATION.md).
+**Status: skeleton.** No skill is published yet.
 
-## Installation rapide
+## Quick install
 
-Prérequis : pepito lancé, serveur MCP activé dans Settings > MCP, Claude Code connecté à pepito par l'Assistant de connexion de pepito (détail : [plugins/pepito/README.md](plugins/pepito/README.md)).
+Requirements: pepito running, MCP server enabled in Settings > MCP, Claude Code connected to pepito with pepito's connection assistant (details: [plugins/pepito/README.md](plugins/pepito/README.md)).
 
 ```text
 /plugin marketplace add vjeantet/pepito-plugins
 /plugin install pepito@pepito-plugins
 ```
 
-Depuis Claude Code 2.1.275 : `/plugin install pepito --marketplace vjeantet/pepito-plugins`.
+Since Claude Code 2.1.275: `/plugin install pepito --marketplace vjeantet/pepito-plugins`.
 
-## Contenu du dépôt
+## Repository contents
 
-- `.claude-plugin/marketplace.json` : la marketplace `pepito-plugins`.
-- `plugins/pepito/` : le plugin (manifeste, skills, README d'installation).
-- `docs/` et `.scratch/` : glossaire, conventions et chantiers (en français).
+- `.claude-plugin/marketplace.json`: the `pepito-plugins` marketplace.
+- `plugins/pepito/`: the plugin (manifest, skills, installation README).
+- `docs/` and `.scratch/`: maintainers' working notes (glossary, conventions, design tickets), written in French.
 
-Licence : MIT, voir [LICENSE](LICENSE). Les skills de travail copiés sous `.claude/skills/` sont sous la licence de leur auteur ([LICENSE-mattpocock-skills](.claude/skills/LICENSE-mattpocock-skills)).
+License: MIT, see [LICENSE](LICENSE). The development skills copied under `.claude/skills/` are under their author's license ([LICENSE-mattpocock-skills](.claude/skills/LICENSE-mattpocock-skills)).

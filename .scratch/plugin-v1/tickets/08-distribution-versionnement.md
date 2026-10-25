@@ -20,7 +20,7 @@ Carte : [../map.md](../map.md).
 - **Branche publiée** : `main` sert la marketplace ; travail sur des branches, publication par fusion ? Tags git par version ?
 - **Notes de version** : fichier `CHANGELOG.md`, releases GitHub, ou rien ; entrée obligatoire quand un skill change de comportement ou de version minimale de pepito ?
 - **Mise à jour automatique** : désactivée par défaut pour une marketplace tierce ; le README explique comment l'activer (fait). Le recommander, ou recommander la mise à jour manuelle pour garder la main sur ce qui tourne en `-p` (ticket 07) ?
-- **Langue des README** : français (convention du dépôt) ; le plugin vise aussi des utilisateurs anglophones de pepito (app localisée EN et FR) : README en anglais, bilingue, ou deux fichiers ?
+- ~~**Langue des README**~~ : tranché le 2026-10-25 par l'utilisateur, tout ce qui est destiné aux utilisateurs est en anglais (`CLAUDE.md` § Langues). Reste ouvert : une version française des README (pepito est localisé EN et FR), ou anglais seul ?
 - **Icône** : `claude plugin validate` relève `ICON_MISSING` (catalogue public de plugins) ; reprendre l'icône de pepito (droits, taille 512 à 2048 px) ou s'en passer tant que le plugin n'est pas soumis ?
 
 Skill : `grilling`. HITL : réponses de l'utilisateur seulement.

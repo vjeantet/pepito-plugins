@@ -46,6 +46,7 @@ Frontière : 01, 09. 06 n'a pas de bloquant dans le chantier mais attend pepito 
 
 - 2026-10-25 (avec l'utilisateur, dans pepito) : intégration en deux briques séparées ; le plugin ne dépend que du contrat MCP et du contrat `PEPITO_*` du Script de post-traitement ; pepito n'écrit dans aucune configuration d'Outil IA ni ne lance de CLI tiers (`serveur-mcp-v1.md` § 8.2 [T07]) ; terme « Script de post-traitement », jamais « Script ».
 - 2026-10-25 (avec l'utilisateur, dans pepito) : trois skills envisagés, `process-recording` (relier la réunion aux autres outils, pas refaire le CR), `session-companion` (sans Transcription en direct), `prepare-meeting` (bloqué côté pepito).
+- 2026-10-25 (avec l'utilisateur) : tout ce qui est destiné aux utilisateurs (README, manifestes, messages des skills, exemples, notes de version) est en anglais, le dépôt étant public ; la documentation de travail et les specs restent en français (`CLAUDE.md` § Langues).
 - 2026-10-25 (initialisation du dépôt, réversible) : marketplace `pepito-plugins`, plugin `pepito` à `./plugins/pepito`, sans `version` ni `.mcp.json` en attendant les tickets 02 et 08.
 
 ## Not yet specified
@@ -57,7 +58,7 @@ Frontière : 01, 09. 06 n'a pas de bloquant dans le chantier mais attend pepito 
 5. **`session-companion`** (ticket 05) : usages pendant la Session, repérage de la Session en cours, contexte des Enregistrements passés, Session annulée.
 6. **`prepare-meeting`** (ticket 06) : attend un tool calendrier et un objet pour la préparation dans pepito.
 7. **Exemple de Script de post-traitement** (ticket 07) : attend le contrat `PEPITO_*` (`script-post-traitement#02`), les règles de sécurité (`#06`) et la décision sur l'exemple publié (`#08`).
-8. **Distribution** (ticket 08) : nom de la marketplace, champ `version`, notes de version, mise à jour automatique, langue des README, icône.
+8. **Distribution** (ticket 08) : nom de la marketplace, champ `version`, notes de version, mise à jour automatique, version française des README, icône.
 9. **Confidentialité** (ticket 09) : formulations du README et des skills, alignées sur celles de pepito.
 
 ## Out of scope
