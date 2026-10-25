@@ -43,7 +43,8 @@ Pour les lire : cloner pepito en lecture seule hors de ce dépôt (scratchpad). 
 ### Langues
 - Tout ce qui est destiné aux utilisateurs du plugin est en anglais, le dépôt étant public (décision de l'utilisateur, 2026-10-25) : README, manifestes (`description`, `keywords`), messages affichés par les skills, exemples de scripts, notes de version.
 - Contenu destiné au LLM (skills, descriptions, prompts) : anglais aussi, comme les descriptions des tools MCP de pepito (`serveur-mcp-v1.md` § 6.1).
-- Documentation de travail (`CLAUDE.md`, `docs/`, `.scratch/` : glossaire, conventions, cartes, tickets, specs, recherches) et messages de commit : français.
+- Messages de commit : anglais, systématiquement (décision de l'utilisateur, 2026-10-25).
+- Documentation de travail (`CLAUDE.md`, `docs/`, `.scratch/` : glossaire, conventions, cartes, tickets, specs, recherches) : français.
 
 ### Dépôt public
 - Ne rien recopier de pepito au-delà de ce qu'exige le contrat : ni prix, ni licence, ni analyse de marché, ni rien sous `docs/1-product/pricing` ou `docs/1-product/analyse-marché`, ni code de l'app.
