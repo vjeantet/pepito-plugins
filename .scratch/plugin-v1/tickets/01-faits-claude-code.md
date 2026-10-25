@@ -1,7 +1,7 @@
 ---
 type: research
-status: open
-assignee:
+status: closed
+assignee: claude
 blocked_by: []
 triage: needs-triage
 ---
@@ -29,3 +29,24 @@ Confirmer sur la page source, puis sur le Mac de l'utilisateur avec pepito lanc�
 Livrable : compléter `research/faits-claude-code.md` (marqueur [V] vérifié, version de Claude Code, date) et lister ce qui change pour les tickets 02, 03, 07 et 08.
 
 Skill : `research`. HITL : essais sur le Mac de l'utilisateur (pepito lancé, MCP activé).
+
+## Resolution
+
+2026-10-25 : fiche [../research/faits-claude-code.md](../research/faits-claude-code.md) réécrite. Documentation relue en Markdown brut (citations exactes : [../research/verification-doc-2026-10-25.md](../research/verification-doc-2026-10-25.md)), essais sur Claude Code 2.1.310 avec un faux serveur MCP « pepito » ([../research/banc-essai/](../research/banc-essai/)). Les essais qui exigent le vrai pepito passent au ticket [11](11-essais-mac-pepito.md).
+
+Faits établis :
+
+1. **Skill en `-p`** : `claude -p "/pepito:<skill> <id>"` développe le skill d'un plugin et lui passe l'argument [D] [L].
+2. **`allowed-tools`** d'un skill de plugin, nom exact ou `mcp__pepito__*`, suffit à permettre l'appel MCP en `-p`, sans `--allowedTools`, y compris pour un plugin installé depuis une marketplace ; sans lui, l'appel est refusé et listé dans `permission_denials` [L]. La documentation ne le dit que pour les skills de projet.
+3. **`--tools ""`** retire les outils intégrés, garde les tools MCP et le développement du skill [D] [L] ; `--disallowedTools "mcp__*"` retire les tools MCP ; `--permission-mode dontAsk`, `--permission-prompts none` et `--max-turns` (documenté, absent de `--help`) existent [D].
+4. **Serveur déclaré par un plugin** : tools `mcp__plugin_pepito_pepito__*` ; commande au chemin absolu hors du plugin acceptée sans avertissement ; commande absente = serveur `failed`, session poursuivie [L].
+5. **Doublon** : un serveur de plugin n'est écarté que si sa commande **et ses `args`** sont ceux d'un serveur déclaré au-dessus (l'`env` ne compte pas) ; sinon deux serveurs et chaque tool en double sous `mcp__pepito__*` et `mcp__plugin_pepito_pepito__*` [D] [L]. **Corrige** le fait noté dans pepito le 2026-10-25 (« la déclaration utilisateur l'emporte » sans condition).
+6. **Installation** depuis ce dépôt : `pepito@pepito-plugins` s'installe ; sans `version`, la version est le SHA court du dernier commit **du dépôt**, et tout commit, même limité à `.scratch/`, est livré comme mise à jour ; avec `version`, rien n'est livré sans hausse [D] [L]. Mise à jour automatique désactivée par défaut, et jamais déclenchée par un `claude -p` [D].
+7. **`--bare`** ignore plugins et serveurs MCP découverts, et doit devenir le défaut de `-p` dans une version future [D] : risque pour un Script de post-traitement qui compte sur le plugin installé.
+
+Conséquences pour les tickets :
+
+- 02 : déclarer le serveur dans le plugin n'est sans doublon que si la commande est exactement celle de l'Assistant de connexion, ce qui dépend de l'emplacement de pepito ; sinon tools en double.
+- 03 : `allowed-tools` porte des noms préfixés ; un tool renommé dans pepito devient refusé en `-p`, avec trace dans `permission_denials`.
+- 07 : les skills peuvent porter eux-mêmes leurs permissions MCP ; l'appel peut se limiter à `--tools ""` ; ajouter `--permission-mode dontAsk` ou `--permission-prompts none`, `--max-turns`, et prévoir `--bare` (`--plugin-dir`, `--mcp-config`).
+- 08 : sans `version`, chaque commit de documentation ou de `.scratch/` atteint les utilisateurs ; argument pour poser `version` dans `plugin.json`.
