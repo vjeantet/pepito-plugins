@@ -1,0 +1,10 @@
+{
+  "name": "pepito",
+  "description": "Skills that connect your pepito recordings to your other tools, through pepito's local MCP server.",
+  "author": {
+    "name": "Valere Jeantet"
+  },
+  "repository": "https://github.com/vjeantet/pepito-plugins",
+  "license": "MIT",
+  "keywords": ["pepito", "meetings", "transcription", "mcp"]
+}

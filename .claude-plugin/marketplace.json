@@ -1,0 +1,14 @@
+{
+  "name": "pepito-plugins",
+  "description": "Claude Code plugins for pepito, the macOS app that records, transcribes and summarizes meetings.",
+  "owner": {
+    "name": "Valere Jeantet"
+  },
+  "plugins": [
+    {
+      "name": "pepito",
+      "source": "./plugins/pepito",
+      "description": "Skills that connect your pepito recordings to your other tools, through pepito's local MCP server."
+    }
+  ]
+}
