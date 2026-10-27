@@ -31,3 +31,7 @@ Traiter un Enregistrement terminé. Décision du 2026-10-25 : sa valeur est de r
 - **`disable-model-invocation`** : skill invoqué seulement par `/pepito:process-recording`, ou aussi chargé de lui-même quand l'utilisateur parle d'une réunion ?
 
 Skill : `grilling` + `domain-modeling`. HITL : réponses de l'utilisateur seulement.
+
+## Comments
+
+- 2026-10-27 (ticket [03](03-compatibilite-versions.md)) : règles de compatibilité communes à tous les skills : version minimale pepito 26.56 ; tool absent : arrêt avec une phrase ; lecture tolérante de `structuredContent` ; refus `isError` cité tel quel, action abandonnée, aucun réessai (garde « Étape en cours » comprise, `-p` compris). Le périmètre de ce skill ne doit citer que des tools présents dans [../catalog/](../catalog/README.md).

@@ -48,3 +48,7 @@ Skill : `grilling`. HITL : réponses de l'utilisateur seulement.
 6. **Autres serveurs MCP de l'utilisateur** (calendrier, tickets, messagerie) : aucun n'est nommé ; les skills décrivent des capacités (« if a calendar tool is available… ») et fonctionnent avec pepito seul. Le ticket 04 peut y revenir.
 
 Rien à porter dans pepito : le plugin n'ajoute aucune voie de connexion.
+
+## Comments
+
+- 2026-10-27 (ticket [03](03-compatibilite-versions.md), relecture de pepito 26.60) : depuis pepito 26.58, le Relais MCP stdio est retiré ; le seul transport est le Point d'accès HTTP (`http://127.0.0.1:47374/mcp`, `Authorization: Bearer <jeton>`), et l'Assistant de connexion donne `claude mcp add --transport http --scope user pepito <url> --header "Authorization: Bearer <jeton>"`. La décision tient et sort renforcée : un `.mcp.json` publié ne peut pas porter le jeton propre à chaque utilisateur, et l'argument du chemin de l'app tombe. Point 5 : le cas « Relais MCP terminé » devient « Point d'accès injoignable ou 401 » (pepito quitté, MCP désactivé, jeton régénéré, port changé) ; comportement de Claude Code à vérifier au ticket [11](11-essais-mac-pepito.md).

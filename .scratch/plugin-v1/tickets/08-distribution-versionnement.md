@@ -24,3 +24,7 @@ Carte : [../map.md](../map.md).
 - **Icône** : `claude plugin validate` relève `ICON_MISSING` (catalogue public de plugins) ; reprendre l'icône de pepito (droits, taille 512 à 2048 px) ou s'en passer tant que le plugin n'est pas soumis ?
 
 Skill : `grilling`. HITL : réponses de l'utilisateur seulement.
+
+## Comments
+
+- 2026-10-27 (ticket [03](03-compatibilite-versions.md)) : la compatibilité ne passe pas par le numéro de version du plugin : version minimale de pepito (26.56) écrite dans le README et dans les skills, pas de vérification de version à l'exécution. Un schéma aligné sur les versions de pepito n'est donc pas requis par le ticket 03. La veille sur les entrées « MCP » de pepito peut déclencher une release du plugin.

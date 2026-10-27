@@ -22,3 +22,7 @@ Consolider les décisions des tickets 02 à 05, 08 et 09, puis :
 - publier (fusion sur `main`, notes de version selon le ticket 08) ; `prepare-meeting` (ticket 06) et l'exemple de Script de post-traitement (ticket 07) y entrent seulement s'ils sont débloqués.
 
 Skill : `writing-for-agents` pour les skills, `implement` pour le reste. HITL : essais et publication par l'utilisateur.
+
+## Comments
+
+- 2026-10-27 (ticket [03](03-compatibilite-versions.md)) : à faire ici : texte exact du message « tool absent » (tool, `pepitoVersion` lu par `get_library_info`, version minimale 26.56, mise à jour du plugin si pepito est plus récent) ; règles de lecture tolérante et de refus `isError` dans chaque skill ; contrôle mécanique, avant chaque commit qui touche un skill, que chaque Nom de base cité existe dans la copie la plus récente de [../catalog/](../catalog/README.md). README déjà mis à jour : « pepito 26.56 or later », commande HTTP de l'Assistant.

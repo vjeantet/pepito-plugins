@@ -6,12 +6,12 @@ This plugin connects the meetings recorded by [pepito](https://pepito.sodadi.fr)
 
 ## Requirements
 
-1. **pepito running**, installed in `/Applications` or `~/Applications`. The MCP server only exists while pepito is running.
+1. **pepito 26.56 or later, running**, installed in an Applications folder. The MCP server only exists while pepito is running.
 2. **MCP server enabled** in pepito: Settings > MCP, "Access pepito from your AI tools" switch.
-3. **Claude Code connected to pepito**: Settings > MCP > "Connect an AI tool…", choose Claude Code, copy the command it shows and paste it into a terminal. It looks like this:
+3. **Claude Code connected to pepito**: Settings > MCP > "Connect an AI tool…", choose Claude Code, copy the command it shows and paste it into a terminal. Since pepito 26.58 it looks like this:
 
    ```sh
-   claude mcp add --scope user pepito -- <path to pepito.app>/Contents/Helpers/pepito-mcp
+   claude mcp add --transport http --scope user pepito http://127.0.0.1:47374/mcp --header "Authorization: Bearer <token>"
    ```
 
    Check with `claude mcp list`: `pepito` should be listed as connected. pepito never edits Claude Code's configuration itself; you run this command.
@@ -46,6 +46,8 @@ Auto-update is off by default for third-party marketplaces. To turn it on: `/plu
 
 ## Good to know
 
-- **Lost connection**: when pepito quits or updates, the MCP connection closes and Claude Code does not restart the server. Relaunch pepito, then reconnect the server in Claude Code (`/mcp`) or start a new session.
+- **Lost connection**: when pepito quits or updates, the MCP connection closes. Relaunch pepito; if pepito's tools still fail, reconnect the server in Claude Code (`/mcp`) or start a new session.
+- **New token or port**: after regenerating the token or changing the port in Settings > MCP, run `claude mcp remove --scope user pepito`, then paste the new command from "Connect an AI tool…".
+- **Upgrading from pepito 26.57 or earlier**: the old `pepito-mcp` command no longer exists. Run `claude mcp remove --scope user pepito`, then paste the new command from "Connect an AI tool…".
 - **Privacy**: what Claude Code reads through the MCP server (transcripts, summaries, notes) is sent to the model Claude Code uses. What a connected AI tool does with this content, including sending it to its publisher, depends on that tool.
 - **Meeting content**: a transcript contains what external participants said. The skills treat it as data, never as instructions.

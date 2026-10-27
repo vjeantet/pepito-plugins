@@ -8,7 +8,8 @@ Une première version publiée du Plugin pepito dans la marketplace `pepito-plug
 
 - Origine : exploration du 2026-10-25 avec l'utilisateur, dans le dépôt pepito (« renforcer l'intégration aux Outils IA comme Claude Code »), recentrée sur deux briques : le Script de post-traitement dans pepito, ce plugin ici. Carte jumelle dans pepito : `.scratch/script-post-traitement/map.md`, qui range le plugin dans son « Out of scope » et ne fixe que ce dont il dépend. Au 2026-10-25, ce chantier n'existe que sur la branche `claude/claudecode-skills-integration-5k3nra` de pepito.
 - Domaine : `docs/glossaire.md`. Contrat : specs `serveur-mcp-*.md` de pepito (dépôt privé) et référence du catalogue (`CatalogReference.json`), qui fait foi.
-- Catalogue au 2026-10-25 (19 tools, référence du catalogue) :
+- **Transport (relu le 2026-10-27, pepito 26.60)** : depuis pepito 26.58, le Relais MCP stdio est retiré ; seul transport, le Point d'accès HTTP `http://127.0.0.1:47374/mcp` avec `Authorization: Bearer <jeton>` ; l'Assistant de connexion donne `claude mcp add --transport http --scope user pepito <url> --header "Authorization: Bearer <jeton>"`. MCP sans licence depuis 26.59 (`serveur-mcp-v1.md` § 3.6, § 11 sexies, § 11 septies).
+- Catalogue au 2026-10-25 (19 tools, référence du catalogue, inchangé depuis pepito 26.56 ; copie datée : [catalog/](catalog/README.md)) :
   - lecture (`readOnlyHint`) : `list_recordings`, `get_recording`, `get_transcript`, `get_summary`, `get_notes`, `list_tags`, `get_library_info`, `get_guidelines` ;
   - écriture sur un Enregistrement : `append_notes`, `set_title`, `set_transcript`, `set_summary`, `regenerate_summary`, `update_tags`, `add_artifact`, `update_artifact`, `remove_artifact` ;
   - autres écritures : `define_tag` (Catalogue des Tags), `propose_guidelines` (validée par l'utilisateur dans pepito).
@@ -31,7 +32,7 @@ Une première version publiée du Plugin pepito dans la marketplace `pepito-plug
 |---|---|---|---|---|
 | 01 | [Faits Claude Code à vérifier](tickets/01-faits-claude-code.md) | research | - | needs-triage (fermé) |
 | 02 | [Déclarer ou non le serveur MCP dans le plugin](tickets/02-declaration-serveur-mcp.md) | grilling | 01 | needs-triage (fermé) |
-| 03 | [Compatibilité entre versions de pepito et du plugin](tickets/03-compatibilite-versions.md) | grilling | 01, 02 | needs-triage |
+| 03 | [Compatibilité entre versions de pepito et du plugin](tickets/03-compatibilite-versions.md) | grilling | 01, 02 | needs-triage (fermé) |
 | 04 | [Skill `process-recording`](tickets/04-process-recording.md) | grilling | 02, 03 | needs-triage |
 | 05 | [Skill `session-companion`](tickets/05-session-companion.md) | grilling | 02, 03 | needs-triage |
 | 06 | [Skill `prepare-meeting`](tickets/06-prepare-meeting.md) | grilling | - | needs-info |
@@ -41,7 +42,7 @@ Une première version publiée du Plugin pepito dans la marketplace `pepito-plug
 | 10 | [Rédaction et publication de la v1](tickets/10-redaction-publication-v1.md) | task | 02, 03, 04, 05, 08, 09, 11 | needs-triage |
 | 11 | [Essais sur le Mac avec pepito](tickets/11-essais-mac-pepito.md) | research | - | ready-for-human |
 
-Frontière : 03, 08, 09 ; 11 attend l'utilisateur sur son Mac (`ready-for-human`). 06 n'a pas de bloquant dans le chantier mais attend pepito (`needs-info`).
+Frontière : 04, 05, 08, 09 (04 et 05 débloqués par la fermeture de 03) ; 11 attend l'utilisateur sur son Mac (`ready-for-human`). 06 n'a pas de bloquant dans le chantier mais attend pepito (`needs-info`).
 
 ## Decisions so far
 
@@ -51,17 +52,17 @@ Frontière : 03, 08, 09 ; 11 attend l'utilisateur sur son Mac (`ready-for-human`
 - 2026-10-25 : [Faits Claude Code à vérifier](tickets/01-faits-claude-code.md) : skill de plugin développé en `-p` avec ses arguments ; `allowed-tools` (nom exact ou `mcp__pepito__*`) suffit en `-p`, plugin installé compris ; `--tools ""` garde les tools MCP ; serveur de plugin écarté comme doublon seulement à commande et `args` identiques, sinon tools en double ; sans `version`, tout commit du dépôt est une mise à jour ; `--bare` deviendra le défaut de `-p`. Essais avec le vrai pepito reportés au ticket 11.
 - 2026-10-25 (initialisation du dépôt, réversible) : marketplace `pepito-plugins`, plugin `pepito` à `./plugins/pepito`, sans `version` ni `.mcp.json` en attendant les tickets 02 et 08.
 - 2026-10-27 (avec l'utilisateur) : [Déclarer ou non le serveur MCP dans le plugin](tickets/02-declaration-serveur-mcp.md) : pas de `.mcp.json` en v1, connexion par l'Assistant seule, serveur nommé `pepito` obligatoire ; Nom de base dans le texte des skills, `allowed-tools: mcp__pepito__*` sans `disallowed-tools` (garde-fou par le texte du skill et l'appelant en `-p`) ; pepito absent : arrêt avec une phrase ; aucun autre serveur MCP nommé.
+- 2026-10-27 (avec l'utilisateur) : [Compatibilité entre versions de pepito et du plugin](tickets/03-compatibilite-versions.md) : règle écrite du § 9 sans engagement « ajout seul » ; version minimale pepito 26.56 (README et skills), sans vérification de version ; tool absent : arrêt avec une phrase ; lecture tolérante ; refus `isError` cité tel quel, sans réessai ; veille sur les entrées « MCP » de pepito et copie datée de la référence du catalogue avec contrôle des Noms de base. Faits de transport corrigés (Point d'accès HTTP depuis 26.58).
 
 ## Not yet specified
 
-1. **Essais avec le vrai pepito** (ticket 11) : noms réels, doublon avec la commande de l'Assistant de connexion, Relais MCP joint par un enfant de pepito, reconnexion.
-2. **Compatibilité** (ticket 03) : version minimale de pepito, comportement d'un skill face à un tool absent, renommé ou refusé, et face à un champ nouveau.
-3. **`process-recording`** (ticket 04) : périmètre (quels « autres outils »), tools appelés, écritures permises, garde-fous contre l'injection, interaction avec le Script de post-traitement (boucle `set_summary` / `regenerate_summary`).
-4. **`session-companion`** (ticket 05) : usages pendant la Session, repérage de la Session en cours, contexte des Enregistrements passés, Session annulée.
-5. **`prepare-meeting`** (ticket 06) : attend un tool calendrier et un objet pour la préparation dans pepito.
-6. **Exemple de Script de post-traitement** (ticket 07) : attend le contrat `PEPITO_*` (`script-post-traitement#02`), les règles de sécurité (`#06`) et la décision sur l'exemple publié (`#08`).
-7. **Distribution** (ticket 08) : nom de la marketplace, champ `version`, notes de version, mise à jour automatique, version française des README, icône.
-8. **Confidentialité** (ticket 09) : formulations du README et des skills, alignées sur celles de pepito.
+1. **Essais avec le vrai pepito** (ticket 11) : noms réels, pepito absent, connexion coupée, jeton régénéré (401), Point d'accès HTTP joint par un enfant de pepito.
+2. **`process-recording`** (ticket 04) : périmètre (quels « autres outils »), tools appelés, écritures permises, garde-fous contre l'injection, interaction avec le Script de post-traitement (boucle `set_summary` / `regenerate_summary`).
+3. **`session-companion`** (ticket 05) : usages pendant la Session, repérage de la Session en cours, contexte des Enregistrements passés, Session annulée.
+4. **`prepare-meeting`** (ticket 06) : attend un tool calendrier et un objet pour la préparation dans pepito.
+5. **Exemple de Script de post-traitement** (ticket 07) : attend le contrat `PEPITO_*` (`script-post-traitement#02`), les règles de sécurité (`#06`) et la décision sur l'exemple publié (`#08`).
+6. **Distribution** (ticket 08) : nom de la marketplace, champ `version`, notes de version, mise à jour automatique, version française des README, icône.
+7. **Confidentialité** (ticket 09) : formulations du README et des skills, alignées sur celles de pepito.
 
 ## Out of scope
 

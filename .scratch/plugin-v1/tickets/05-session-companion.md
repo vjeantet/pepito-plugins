@@ -28,3 +28,7 @@ Accompagner une Session en cours. Décision du 2026-10-25 : pas de Transcription
 - **Injection** : surface limitée aux Notes et aux métadonnées pendant la Session (`serveur-mcp-session-en-cours.md` § 8.3), mais les CR et Notes des Enregistrements passés sont lus : mêmes garde-fous que le ticket 04.
 
 Skill : `grilling`. HITL : réponses de l'utilisateur seulement.
+
+## Comments
+
+- 2026-10-27 (ticket [03](03-compatibilite-versions.md)) : règles de compatibilité communes à tous les skills : version minimale pepito 26.56 ; tool absent : arrêt avec une phrase ; lecture tolérante de `structuredContent` ; refus `isError` cité tel quel, action abandonnée, aucun réessai (refus « Session en cours » compris).
