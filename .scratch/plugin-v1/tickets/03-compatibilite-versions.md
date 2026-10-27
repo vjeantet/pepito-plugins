@@ -24,3 +24,7 @@ Le plugin et pepito sont publiés séparément ; l'utilisateur met l'un à jour 
 - **Référence du catalogue** : la recopier dans ce dépôt (public) pour tester les skills contre elle ? Elle couvre noms et schémas, pas les descriptions ; vérifier qu'elle ne porte rien de privé avant toute copie.
 
 Skill : `grilling`. HITL : réponses de l'utilisateur seulement.
+
+## Comments
+
+- 2026-10-27 (ticket [02](02-declaration-serveur-mcp.md)) : les skills portent `allowed-tools: mcp__pepito__*`. Un tool renommé ou ajouté reste permis : le cas « règle `mcp__pepito__<ancien>` inerte, appel refusé en `-p` » ne touche plus les skills, seulement un appelant qui passe une liste exacte en `--allowedTools`. Un renommage reste un tool introuvable pour le texte du skill, qui le nomme par son Nom de base. Le message « pepito absent » est fixé au ticket 02 ; ce ticket décide du message « tool absent ».

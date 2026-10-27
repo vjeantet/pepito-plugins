@@ -30,3 +30,7 @@ Bornes de pepito à respecter (`CLAUDE.md` de pepito, `transcription-apple.md` �
 - **Données d'autres outils** : un skill qui relie la réunion à d'autres outils envoie aussi leur contenu au modèle, et peut envoyer le contenu de la réunion vers eux (ticket 04).
 
 Skill : `grilling`. HITL : réponses de l'utilisateur seulement.
+
+## Comments
+
+- 2026-10-27 (ticket [02](02-declaration-serveur-mcp.md)) : les skills portent `allowed-tools: mcp__pepito__*`, sans `disallowed-tools` : toutes les écritures (`set_summary`, `set_transcript`, `remove_artifact`, `define_tag`, `propose_guidelines`) sont permises sans approbation pendant le tour du skill. Les garde-fous d'écriture et contre l'injection reposent sur le texte du skill et, en `-p`, sur l'appelant (`--disallowedTools`) ; à dire dans le README et l'exemple de Script de post-traitement (ticket 07).

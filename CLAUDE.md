@@ -33,9 +33,14 @@ Pour les lire : cloner pepito en lecture seule hors de ce dépôt (scratchpad). 
   - `session-companion` : accompagner une Session en cours, sans Transcription en direct : `append_notes`, `add_artifact`, `update_tags` et le contexte des Enregistrements passés ;
   - `prepare-meeting` : préparer une réunion à venir. Bloqué côté pepito : aucun tool ne lit le calendrier, et aucun objet ne peut recevoir une préparation tant que l'Enregistrement n'existe pas.
 
+### Prises avec l'utilisateur (2026-10-27, ticket `plugin-v1#02`)
+
+- En v1, le plugin ne déclare pas le serveur MCP (ni `.mcp.json`, ni `mcpServers`). Il suppose le MCP connecté par l'Assistant de connexion de pepito (`claude mcp add --scope user pepito -- <relais>`), sous le nom `pepito`, seul pris en charge.
+- Les skills nomment les tools par leur Nom de base (`get_recording`) dans leur texte, et portent `allowed-tools: mcp__pepito__*` dans leur frontmatter, sans `disallowed-tools`.
+- pepito absent : le skill s'arrête avec une phrase, sans tenter de connexion ni de repli. Aucun autre serveur MCP de l'utilisateur n'est nommé.
+
 ### Propositions à trancher (pas des décisions)
 
-- En v1, le plugin ne déclare pas le serveur MCP dans un `.mcp.json`. Il suppose le MCP déjà connecté par l'Assistant de connexion de pepito (`claude mcp add --scope user pepito -- <relais>`), et ses skills nomment les tools par leur nom de base (`get_recording`), sans préfixe. À trancher : `.scratch/plugin-v1/tickets/02-declaration-serveur-mcp.md`.
 - Nom de la marketplace : `pepito-plugins` (installation `pepito@pepito-plugins`), posé à l'initialisation du dépôt. À confirmer : `.scratch/plugin-v1/tickets/08-distribution-versionnement.md`.
 
 ## Conventions

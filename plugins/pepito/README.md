@@ -16,7 +16,9 @@ This plugin connects the meetings recorded by [pepito](https://pepito.sodadi.fr)
 
    Check with `claude mcp list`: `pepito` should be listed as connected. pepito never edits Claude Code's configuration itself; you run this command.
 
-For now, the plugin assumes this connection is already set up and does not declare an MCP server of its own.
+   Keep the server name `pepito`: the skills only have permission to use tools from a server with that name.
+
+The plugin does not declare an MCP server of its own: it relies on this connection.
 
 ## Installation
 
