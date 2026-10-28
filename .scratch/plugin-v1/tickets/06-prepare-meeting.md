@@ -3,7 +3,7 @@ type: grilling
 status: open
 assignee:
 blocked_by: []
-triage: needs-info
+triage: needs-triage
 ---
 
 # 06: Skill `prepare-meeting`
@@ -12,21 +12,28 @@ Carte : [../map.md](../map.md).
 
 ## Question
 
-Préparer une réunion à venir : retrouver les Enregistrements passés qui s'y rapportent (mêmes participants, même sujet, mêmes Tags) et en tirer une préparation.
+Préparer une réunion à venir avant que son Enregistrement existe : retrouver les Enregistrements passés qui s'y rapportent, en tirer une préparation, et garder en attente dans la conversation les notes, Artefacts et Tags qui seront écrits au démarrage de la Session.
 
-Bloqué côté pepito (constat du 2026-10-25, `script-post-traitement/map.md` de pepito, Out of scope) :
+Conception retenue au ticket [05](05-session-companion.md) (2026-10-28, points 8 et 9), qui lève le blocage côté pepito noté le 2026-10-25 (aucun tool calendrier, aucun objet avant l'Enregistrement) :
 
-- aucun tool MCP ne lit le calendrier : les Événements ne sont visibles que rattachés à un Enregistrement existant (`get_recording`) ;
-- aucun objet ne peut recevoir une préparation tant que l'Enregistrement n'existe pas : `append_notes` et `add_artifact` visent un `id`, qui n'apparaît qu'au démarrage de la Session.
+- les quatre usages de `session-companion` sont possibles avant la Session : lecture du passé tout de suite ; notes, Artefacts et Tags gardés en attente dans la conversation ;
+- `session-companion` propose cette préparation après confirmation quand aucune Session n'est en cours ; au démarrage, il rattache la Session après confirmation et écrit les éléments en attente d'un bloc (un `append_notes`, puis les `add_artifact`, un `update_tags`) ;
+- le tool calendrier de pepito n'est plus requis.
 
-Questions à reprendre quand pepito aura tranché :
+Reste à trancher :
 
-- Source de la réunion à venir : tool calendrier de pepito, autre serveur MCP de calendrier de l'utilisateur, ou titre et participants donnés par l'utilisateur ? La dernière option se passe de pepito pour l'entrée et ne lève que le premier blocage.
-- Destination de la préparation : un objet de pepito avant l'Enregistrement (à créer dans pepito), le début des Notes de la Session une fois démarrée (`session-companion`, ticket 05), ou un document hors de pepito ?
-- Recherche des Enregistrements liés : `list_recordings` (`query` sur Titre, Tags, Participants, sans plein texte, `serveur-mcp-v1.md` § 6.3), puis `get_summary` et `get_notes`.
+- **Source de la réunion** : description par l'utilisateur, Outil tiers de calendrier s'il en a un (aucun nommé), ou les deux ? Que faire d'un Événement pepito rattaché plus tard à la Session (titre, participants) qui diffère de la description ?
+- **Recherche des Enregistrements liés** : `list_recordings` (`query` sur Titre, Tags, Participants, sans plein texte, `serveur-mcp-v1.md` § 6.3 ; `tags`, `from`, `to`), puis `get_summary` et `get_notes` ; plafond (5 au ticket 05 pour le rappel), confirmation avant d'en lire plus ?
+- **Forme de la préparation** : synthèse rendue dans la conversation ; ce qui en part dans les Notes au démarrage (tout, un résumé, seulement ce que l'utilisateur retient) ; un seul bloc `append_notes` ?
+- **Éléments en attente** : nom du terme (glossaire), forme de la liste dans la conversation, modification avant écriture, perte acceptée si la conversation se ferme avant la Session.
+- **Passage de relais** : `prepare-meeting` charge-t-il `session-companion` lui-même au démarrage, ou l'utilisateur le fait-il ? Comment chaque skill reconnaît la liste de l'autre ?
+- **Invocation** : `disable-model-invocation` (le ticket 05 a retenu `false` pour `session-companion`) ; argument (titre, date, participants).
+- **Liste fermée des tools** : celle de `session-companion` en lecture avant la Session (sans écriture tant qu'il n'y a pas d'`id`) ?
+- **Injection, sortie, compatibilité** : reprendre les règles des tickets 03, 04 et 05.
 
-## Dépendances hors chantier
+Skill : `grilling`. HITL : réponses de l'utilisateur seulement.
 
-- pepito : tool de lecture du calendrier et objet de préparation. Aucun chantier ouvert dans pepito au 2026-10-25 ; à proposer par l'utilisateur dans pepito.
+## Comments
 
-Skill : `grilling`, une fois les informations obtenues. HITL : décision de l'utilisateur dans pepito.
+- 2026-10-25 : ouvert bloqué côté pepito (`script-post-traitement/map.md` de pepito, Out of scope) : aucun tool de lecture du calendrier ; aucun objet ne peut recevoir une préparation avant l'Enregistrement (`append_notes`, `add_artifact` visent un `id`, qui n'apparaît qu'au démarrage de la Session).
+- 2026-10-28 (ticket [05](05-session-companion.md)) : blocage levé côté plugin par la conception ci-dessus ; `needs-info` → `needs-triage` ; le ticket entre dans la Destination de la v1. Rien à proposer dans pepito pour la v1 ; un tool calendrier ou un objet de préparation restent des améliorations possibles, pas des prérequis.

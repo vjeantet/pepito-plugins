@@ -2,7 +2,7 @@
 
 ## Destination
 
-Une première version publiée du Plugin pepito dans la marketplace `pepito-plugins` de ce dépôt : skills `process-recording` et `session-companion` rédigés en anglais, testés sur le Mac de l'utilisateur avec pepito, README d'installation à jour, règle de version et notes de version fixées. `prepare-meeting` et l'exemple de Script de post-traitement y entrent si pepito a levé leurs blocages ; sinon ils restent ouverts pour une version suivante.
+Une première version publiée du Plugin pepito dans la marketplace `pepito-plugins` de ce dépôt : skills `process-recording`, `session-companion` et `prepare-meeting` rédigés en anglais, testés sur le Mac de l'utilisateur avec pepito, README d'installation à jour, règle de version et notes de version fixées. L'exemple de Script de post-traitement y entre si pepito a levé ses blocages ; sinon il reste ouvert pour une version suivante. (`prepare-meeting` est entré dans la v1 le 2026-10-28, ticket 05 : il ne dépend plus de pepito.)
 
 ## Notes
 
@@ -34,15 +34,15 @@ Une première version publiée du Plugin pepito dans la marketplace `pepito-plug
 | 02 | [Déclarer ou non le serveur MCP dans le plugin](tickets/02-declaration-serveur-mcp.md) | grilling | 01 | needs-triage (fermé) |
 | 03 | [Compatibilité entre versions de pepito et du plugin](tickets/03-compatibilite-versions.md) | grilling | 01, 02 | needs-triage (fermé) |
 | 04 | [Skill `process-recording`](tickets/04-process-recording.md) | grilling | 02, 03 | needs-triage (fermé) |
-| 05 | [Skill `session-companion`](tickets/05-session-companion.md) | grilling | 02, 03 | needs-triage |
-| 06 | [Skill `prepare-meeting`](tickets/06-prepare-meeting.md) | grilling | - | needs-info |
+| 05 | [Skill `session-companion`](tickets/05-session-companion.md) | grilling | 02, 03 | needs-triage (fermé) |
+| 06 | [Skill `prepare-meeting`](tickets/06-prepare-meeting.md) | grilling | - | needs-triage |
 | 07 | [Exemple de Script de post-traitement](tickets/07-exemple-script-post-traitement.md) | task | 01, 04, 11 | needs-info |
 | 08 | [Distribution et versionnement](tickets/08-distribution-versionnement.md) | grilling | 01 | needs-triage |
 | 09 | [Confidentialité](tickets/09-confidentialite.md) | grilling | - | needs-triage |
-| 10 | [Rédaction et publication de la v1](tickets/10-redaction-publication-v1.md) | task | 02, 03, 04, 05, 08, 09, 11 | needs-triage |
+| 10 | [Rédaction et publication de la v1](tickets/10-redaction-publication-v1.md) | task | 02, 03, 04, 05, 06, 08, 09, 11 | needs-triage |
 | 11 | [Essais sur le Mac avec pepito](tickets/11-essais-mac-pepito.md) | research | - | ready-for-human |
 
-Frontière : 05, 08, 09 ; 11 attend l'utilisateur sur son Mac (`ready-for-human`). 06 n'a pas de bloquant dans le chantier mais attend pepito (`needs-info`).
+Frontière : 06, 08, 09 ; 11 attend l'utilisateur sur son Mac (`ready-for-human`).
 
 ## Decisions so far
 
@@ -54,15 +54,15 @@ Frontière : 05, 08, 09 ; 11 attend l'utilisateur sur son Mac (`ready-for-human`
 - 2026-10-27 (avec l'utilisateur) : [Déclarer ou non le serveur MCP dans le plugin](tickets/02-declaration-serveur-mcp.md) : pas de `.mcp.json` en v1, connexion par l'Assistant seule, serveur nommé `pepito` obligatoire ; Nom de base dans le texte des skills, `allowed-tools: mcp__pepito__*` sans `disallowed-tools` (garde-fou par le texte du skill et l'appelant en `-p`) ; pepito absent : arrêt avec une phrase ; aucun autre serveur MCP nommé.
 - 2026-10-27 (avec l'utilisateur) : [Compatibilité entre versions de pepito et du plugin](tickets/03-compatibilite-versions.md) : règle écrite du § 9 sans engagement « ajout seul » ; version minimale pepito 26.56 (README et skills), sans vérification de version ; tool absent : arrêt avec une phrase ; lecture tolérante ; refus `isError` cité tel quel, sans réessai ; veille sur les entrées « MCP » de pepito et copie datée de la référence du catalogue avec contrôle des Noms de base. Faits de transport corrigés (Point d'accès HTTP depuis 26.58).
 - 2026-10-28 (avec l'utilisateur) : [Skill `process-recording`](tickets/04-process-recording.md) : relie un Enregistrement `completed` avec CR aux Outils tiers par un plan unique approuvé ; liste fermée (5 lectures, `update_tags` en ajout, `add_artifact`, `append_notes`), aucune écriture du CR, du Titre ni de la Transcription ; invocation explicite ; Exécution non interactive par marqueur et `id` exact, pepito seul ; termes Outil tiers et Suite au glossaire.
+- 2026-10-28 (avec l'utilisateur) : [Skill `session-companion`](tickets/05-session-companion.md) : accompagnement qui dure la conversation, invocable par le modèle ; liste fermée (notes dictées écrites aussitôt, Artefacts, Tags en ajout seul, rappel des réunions passées) ; Session rattachée après confirmation, relue avant chaque écriture ; sans Session, préparation par `prepare-meeting`, qui entre dans la v1 sans attendre pepito.
 
 ## Not yet specified
 
 1. **Essais avec le vrai pepito** (ticket 11) : noms réels, pepito absent, connexion coupée, jeton régénéré (401), Point d'accès HTTP joint par un enfant de pepito.
-2. **`session-companion`** (ticket 05) : usages pendant la Session, repérage de la Session en cours, contexte des Enregistrements passés, Session annulée.
-3. **`prepare-meeting`** (ticket 06) : attend un tool calendrier et un objet pour la préparation dans pepito.
-4. **Exemple de Script de post-traitement** (ticket 07) : attend le contrat `PEPITO_*` (`script-post-traitement#02`), les règles de sécurité (`#06`) et la décision sur l'exemple publié (`#08`).
-5. **Distribution** (ticket 08) : nom de la marketplace, champ `version`, notes de version, mise à jour automatique, version française des README, icône.
-6. **Confidentialité** (ticket 09) : formulations du README et des skills, alignées sur celles de pepito.
+2. **`prepare-meeting`** (ticket 06) : source de la réunion, forme de la préparation, éléments en attente et passage de relais avec `session-companion`.
+3. **Exemple de Script de post-traitement** (ticket 07) : attend le contrat `PEPITO_*` (`script-post-traitement#02`), les règles de sécurité (`#06`) et la décision sur l'exemple publié (`#08`).
+4. **Distribution** (ticket 08) : nom de la marketplace, champ `version`, notes de version, mise à jour automatique, version française des README, icône.
+5. **Confidentialité** (ticket 09) : formulations du README et des skills, alignées sur celles de pepito.
 
 ## Out of scope
 

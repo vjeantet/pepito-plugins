@@ -31,7 +31,7 @@ Pour les lire : cloner pepito en lecture seule hors de ce dépôt (scratchpad). 
 - Skills envisagés (aucun n'est rédigé) :
   - `process-recording` : traiter un Enregistrement terminé ; relier la réunion aux autres outils de l'utilisateur, pas refaire le CR ;
   - `session-companion` : accompagner une Session en cours, sans Transcription en direct : `append_notes`, `add_artifact`, `update_tags` et le contexte des Enregistrements passés ;
-  - `prepare-meeting` : préparer une réunion à venir. Bloqué côté pepito : aucun tool ne lit le calendrier, et aucun objet ne peut recevoir une préparation tant que l'Enregistrement n'existe pas.
+  - `prepare-meeting` : préparer une réunion à venir. Bloqué côté pepito au 2026-10-25 (aucun tool calendrier, aucun objet avant l'Enregistrement) ; blocage levé côté plugin le 2026-10-28 (voir ci-dessous).
 
 ### Prises avec l'utilisateur (2026-10-27, ticket `plugin-v1#02`)
 
@@ -46,6 +46,11 @@ Pour les lire : cloner pepito en lecture seule hors de ce dépôt (scratchpad). 
 - Lecture tolérante de `structuredContent` : champ inconnu ignoré, champ absent ou `null` traité comme non renseigné.
 - Refus `isError` : message de pepito cité tel quel avec le nom du tool, action abandonnée, aucun réessai automatique, jamais d'interprétation du texte (hors contrat).
 - Pas d'engagement « ajout seul » demandé à pepito : le plugin suit la règle écrite du § 9.
+
+### Prises avec l'utilisateur (2026-10-28, ticket `plugin-v1#05`)
+
+- `prepare-meeting` entre dans la v1 sans attendre pepito : la préparation reste dans la conversation (notes, Artefacts, Tags en attente) et n'est écrite qu'au démarrage de la Session, rattachée après confirmation ; la réunion est décrite par l'utilisateur ou par un Outil tiers de calendrier (ticket `plugin-v1#06`).
+- `session-companion` est invocable par le modèle (`disable-model-invocation: false`), contrairement à `process-recording`.
 
 ### Propositions à trancher (pas des décisions)
 
