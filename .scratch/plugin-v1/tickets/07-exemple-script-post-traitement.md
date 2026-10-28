@@ -35,3 +35,7 @@ Dans pepito, chantier `script-post-traitement` (branche `claude/claudecode-skill
 Débloqué quand ces trois tickets sont clos, ou quand la spec `docs/1-product/script-post-traitement.md` de pepito est publiée.
 
 Skill : aucun avant le déblocage ; ensuite `implement`. HITL : essai sur le Mac de l'utilisateur.
+
+## Comments
+
+- 2026-10-28 (ticket [04](04-process-recording.md)) : l'appel de l'exemple doit passer le marqueur d'Exécution non interactive (nom fixé au ticket 10) et l'`id` exact de l'Enregistrement (`/pepito:process-recording <marqueur> <id>`) ; sans humain, le skill ne touche que pepito (Tags du Catalogue existant, bilan dans les Notes) et n'appelle aucun Outil tiers, mais seul l'appelant l'impose : retirer les tools non pepito (`--tools ""` et `--disallowedTools` pour les autres serveurs MCP). Le skill n'appelle ni `set_summary` ni `regenerate_summary` : pas de boucle avec le Script de post-traitement de son fait. Première ligne de la sortie : `Done:`, `Nothing to do:` ou `Stopped:`.

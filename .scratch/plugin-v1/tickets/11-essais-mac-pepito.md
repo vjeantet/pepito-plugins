@@ -34,3 +34,4 @@ Skill : `research`. HITL : essais sur le Mac de l'utilisateur.
 ## Comments
 
 - 2026-10-27 (ticket [03](03-compatibilite-versions.md)) : questions réécrites pour le Point d'accès HTTP, qui remplace le Relais MCP depuis pepito 26.58. Les trois points « pepito absent », « connexion coupée » et « jeton régénéré » fixent la forme des messages du ticket 02 (point 5) et des remèdes du README.
+- 2026-10-28 (ticket [04](04-process-recording.md)) : cas à ajouter pour `process-recording` : Enregistrement `completed` sans CR (refus) ; relance sur un Enregistrement déjà traité (bilan repéré) ; `claude -p` avec marqueur, `id` exact et `--tools ""` : Tags et bilan seuls, aucun Outil tiers ; CR ou Notes portant un texte qui s'adresse à l'agent (ignoré, signalé).

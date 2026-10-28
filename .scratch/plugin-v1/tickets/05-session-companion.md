@@ -32,3 +32,4 @@ Skill : `grilling`. HITL : réponses de l'utilisateur seulement.
 ## Comments
 
 - 2026-10-27 (ticket [03](03-compatibilite-versions.md)) : règles de compatibilité communes à tous les skills : version minimale pepito 26.56 ; tool absent : arrêt avec une phrase ; lecture tolérante de `structuredContent` ; refus `isError` cité tel quel, action abandonnée, aucun réessai (refus « Session en cours » compris).
+- 2026-10-28 (ticket [04](04-process-recording.md)) : choix de `process-recording` à reprendre ou à écarter ici, pour des skills cohérents : `disable-model-invocation: true` ; liste fermée des tools écrite dans le texte du skill ; texte qui s'adresse à l'agent ignoré et signalé en une ligne ; première ligne `Done:` / `Nothing to do:` / `Stopped:` ; contenu dans la langue de la réunion, messages fixes en anglais. Termes **Outil tiers** et **Suite** au glossaire. `process-recording` refuse le statut `recording` et renvoie vers ce skill.
